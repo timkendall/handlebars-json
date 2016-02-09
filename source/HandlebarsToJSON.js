@@ -45,7 +45,7 @@ module.exports =  {
   transform(hbs) {
     const AST = Handlebars.parse(hbs);
     const body = AST.body || [];
-    const blocks = programBody.filter((block) => block.type === 'BlockStatement');
+    const blocks = body.filter((block) => block.type === 'BlockStatement');
 
     return blocks.map(parseStatement);
   }
