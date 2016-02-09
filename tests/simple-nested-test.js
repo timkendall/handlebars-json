@@ -15,12 +15,10 @@ const expected = [ { name: 'MyLayout',
        { name: 'FancyFooter', properties: null, children: null } ] } ];
 
 test('HandlebarsToJSON:transform() Handlebars are converted to JSON', (t) => {
-    //t.plan(1);
+    t.plan(1);
     const template = fs.readFileSync('./simple-nested.hbs', 'utf-8');
     const json = transform(template);
 
-    // console.log(util.inspect(json, { showHidden: false, depth: null }))
-    // console.log(json.length)
     console.log(util.inspect(json, { showHidden: false, depth: null }))
 
     t.same(json, expected);
