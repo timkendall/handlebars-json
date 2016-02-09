@@ -1,0 +1,17 @@
+{{#MyLayout}}
+  {{FancyHeader text="Whatup this is a header."}}
+
+  {{Paragraph text="Lorem ipsum hasdf aio4hsjj dfsdfggd."}}
+
+  {{#each blogPosts}}
+    {{BlogPost heading subheading url}}
+  {{/each}}
+
+  {{#if registeredUser}}
+    {{SpecialMessage text="You're awesome!"}}
+  {{else}}
+    {{DefaultMessage text="Acorns rocks, you should register."}}
+  {{/if}}
+
+  {{FancyFooter}}
+{{/MyLayout}}

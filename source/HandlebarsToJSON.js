@@ -5,7 +5,7 @@ function parseStatement(block) {
   if (!block) return {};
 
   const name = block.path.original;
-  const properties = parseAttributesHash(block.hash);
+  const properties = parseProperties(block);
   let children;
 
   if (block.program) {
@@ -20,13 +20,19 @@ function parseStatement(block) {
 }
 
 function parseBody(children) {
-  /** Ignore everything but MustacheStatement's. Eventually we will
-      probably have to include logic to identify conditionals and
-      loops. */
-  return children.filter((child) => child.type === 'MustacheStatement');
+  /** Ignore ContentStatement's for now because we only care about Handlebars. In
+      the future we will probably want to parse these too. */
+  return children.filter((child) => child.type !== 'ContentStatement');
 }
 
-function parseMustacheStatement(block) {
+function parseProperties(block) {
+  if (block.hash) {
+    return parseAttributesHash(block.hash);
+  } else if (block.params) {
+    return parseParamsArray(block.params);
+  } else {
+    return null;
+  }
 }
 
 function parseAttributesHash(hash) {
@@ -36,6 +42,20 @@ function parseAttributesHash(hash) {
   return keyPairs.map((keyPair) => {
     const key = keyPair.key;
     const value = keyPair.value.value;
+
+    return { key, value };
+  });
+}
+
+function parseParamsArray(array) {
+  if (array.length === 0) return null;
+  const keyPairs = array;
+
+  return keyPairs.map((keyPair) => {
+    const key = keyPair.original;
+    /** These are to support `if` and `each` helpers. These helpers will
+        have properties with no values (ex. `{{#each blogPosts}}`). */
+    const value = null;
 
     return { key, value };
   });
