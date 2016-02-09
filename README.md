@@ -4,6 +4,8 @@
 
 This a simple parser built on top of [Handlebars](https://github.com/wycats/handlebars.js/) `parse()`. It emits simpler JSON objects.
 
+*AST stands for "Abstract Syntax Tree". This is essentially what `Handlebars.parse()` gives us (I think).*
+
 ## Installation
 
 TODO
