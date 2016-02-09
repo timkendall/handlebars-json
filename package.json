@@ -9,7 +9,6 @@
   "author": "Timothy Kendall <kenda104@mail.chapman.edu> (http://timkendall.com/)",
   "license": "ISC",
   "dependencies": {
-    "baconjs": "^0.7.83",
     "handlebars": "^4.0.5"
   },
   "devDependencies": {
