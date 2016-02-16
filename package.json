@@ -2,7 +2,7 @@
   "name": "handlebars-json",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "source/HandlebarsToJSON.js",
   "scripts": {
     "test": "ava tests"
   },
